@@ -33,3 +33,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+stages:
+ - stage: Build
+   jobs:
+   - job: Build
