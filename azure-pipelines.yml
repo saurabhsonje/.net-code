@@ -53,3 +53,17 @@ steps:
     command: publish
     publishWebProjects: True
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+
+# this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'myWebsiteName'
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'sanket.jadhav (c7a4cb49-a08b-453e-82ad-c36c75247cf9)'
+    appType: 'webApp'
+    appName: 'EAApp'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
+ 
